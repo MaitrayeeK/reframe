@@ -17,6 +17,7 @@ export default function RotateControl({ recipe, onChange }: Props) {
         const active = recipe.rotate === deg;
         return (
           <button
+            type="button"
             key={deg}
             onClick={() => onChange({ rotate: deg })}
             className={`
