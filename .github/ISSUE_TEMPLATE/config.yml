@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GSSoC Support
+    url: https://gssoc.girlscript.tech/
+    about: Please read the guidelines before creating issues.
