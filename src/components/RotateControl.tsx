@@ -2,6 +2,7 @@
 
 import { EditRecipe } from "@/lib/types";
 import { RotateCw } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Props {
   recipe: EditRecipe;
@@ -26,8 +27,7 @@ export default function RotateControl({ recipe, onChange }: Props) {
               ${active
                 ? "border-film-500 bg-film-50 text-film-700 font-heading font-semibold"
                 : "border-[var(--border)] text-[var(--muted)] hover:border-film-300 bg-[var(--surface)]"
-              }
-            `}
+            )}
           >
             <RotateCw size={15} style={{ transform: `rotate(${deg}deg)` }} className="transition-transform" />
             <span className="sr-only">Rotate video to {deg} degrees</span>

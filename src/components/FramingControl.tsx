@@ -2,6 +2,7 @@
 
 import { EditRecipe } from "@/lib/types";
 import { Maximize2, Crop } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Props {
   recipe: EditRecipe;
@@ -25,8 +26,7 @@ export default function FramingControl({ recipe, onChange }: Props) {
               ${active
                 ? "border-film-500 bg-film-50 text-film-700"
                 : "border-[var(--border)] text-[var(--muted)] hover:border-film-300 bg-[var(--surface)]"
-              }
-            `}
+            )}
           >
             <Icon size={18} />
             <span className="sr-only">
