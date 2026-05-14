@@ -177,6 +177,7 @@ graph TD
 | Mobile Chrome | ✅ Full    |                         |
 | Mobile Safari | ⚠️ Partial | Large files may be slow |
 
+> Reframe requires WebAssembly (WASM) support to process videos in the browser.
 ---
 
 ## Contributing
