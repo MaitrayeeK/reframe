@@ -13,7 +13,7 @@
 [![FFmpeg.wasm](https://img.shields.io/badge/FFmpeg.wasm-0.12.10-green?style=flat-square)](https://ffmpegwasm.netlify.app)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 [![GSSoC 2026](https://img.shields.io/badge/GSSoC-2026-FF6B35?style=flat-square)](https://gssoc.girlscript.tech)
-[![CI](https://github.com/Sneha079-codes/reframe/actions/workflows/ci.yml/badge.svg)](https://github.com/Sneha079-codes/reframe/actions/workflows/ci.yml)
+[![CI](https://github.com/Sneha079-codes/reframe/actions/workflows/main.yml/badge.svg)](https://github.com/Sneha079-codes/reframe/actions/workflows/main.yml)
 
 
 **[Try it now →](https://github.com/magic-peach/reframe)** · **[Report a Bug](https://github.com/magic-peach/reframe/issues/new?labels=bug)** · **[Request a Feature](https://github.com/magic-peach/reframe/issues/new?labels=feature)**
