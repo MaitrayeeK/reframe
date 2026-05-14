@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { EditRecipe, ExportResult, ExportStatus, DEFAULT_RECIPE } from "@/lib/types";
 import { loadFFmpeg, exportVideo } from "@/lib/ffmpeg";
 
@@ -76,6 +76,21 @@ export function useVideoEditor() {
     setResult(null);
     setError(null);
   }, []);
+
+  // Development-only memory monitoring during export
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "development") return;
+    if (status !== "exporting") return;
+
+    const interval = setInterval(() => {
+      const mem = (performance as Performance & { memory?: { usedJSHeapSize: number } }).memory;
+      if (mem) {
+        console.log("[Reframe Memory]", Math.round(mem.usedJSHeapSize / 1e6), "MB used");
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [status]);
 
   return {
     file,
