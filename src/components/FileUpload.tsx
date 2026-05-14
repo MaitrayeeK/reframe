@@ -21,7 +21,6 @@ export default function FileUpload({ onFileSelect, currentFile }: Props) {
   const [dragging, setDragging] = useState(false);
 
   const handleFile = (file: File) => {
-    if (!file.type.startsWith("video/")) return;
     onFileSelect(file);
   };
 

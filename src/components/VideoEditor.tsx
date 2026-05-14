@@ -108,7 +108,7 @@ export default function VideoEditor() {
               <div className="flex items-start gap-3 p-4 bg-film-50 border border-film-200 rounded-xl text-film-800 text-sm animate-fade-in">
                 <AlertTriangle size={16} className="shrink-0 mt-0.5 text-film-500" />
                 <div>
-                  <p className="font-heading font-bold text-sm">Export failed</p>
+                  <p className="font-heading font-bold text-sm">Error</p>
                   <p className="text-film-600 text-xs mt-1">{error}</p>
                 </div>
               </div>
