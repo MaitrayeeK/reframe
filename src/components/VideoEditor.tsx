@@ -109,7 +109,10 @@ export default function VideoEditor() {
             )}
 
             {status === "error" && error && (
-              <div className="flex items-start gap-3 p-4 bg-film-50 border border-film-200 rounded-xl text-film-800 text-sm animate-fade-in">
+                 <div
+                    role="status"
+                    className="flex items-start gap-3 p-4 bg-film-50 border border-film-200 rounded-xl text-film-800 text-sm animate-fade-in"
+                  >
                 <AlertTriangle size={16} className="shrink-0 mt-0.5 text-film-500" />
                 <div>
                   <p className="font-heading font-bold text-sm">Export failed</p>
@@ -119,7 +122,7 @@ export default function VideoEditor() {
             )}
 
             {status === "done" && result && (
-              <div className="animate-fade-in">
+              <div role="status" className="animate-fade-in">
                 <DownloadResult result={result} onReset={reset} />
               </div>
             )}
