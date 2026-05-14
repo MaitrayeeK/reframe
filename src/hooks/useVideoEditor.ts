@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import { EditRecipe, ExportResult, ExportStatus, DEFAULT_RECIPE } from "@/lib/types";
 import { loadFFmpeg, exportVideo } from "@/lib/ffmpeg";
 
+const DEFAULT_TITLE = "Reframe — Resize, trim, and export videos in your browser";
 
 function getVideoDuration(file: File): Promise<number> {
   return new Promise((resolve) => {
@@ -67,24 +68,36 @@ export function useVideoEditor() {
       setStatus("error");
     }
   }, [file, recipe]);
+
   useEffect(() => {
-  const handleKeydown = (e: KeyboardEvent) => {
-    if (
-      (e.ctrlKey || e.metaKey) &&
-      e.key === "Enter" &&
-      file &&
-      status === "idle"
-    ) {
-      handleExport();
+    if (file) {
+      document.title = `Editing: ${file.name} | Reframe`;
+    } else {
+      document.title = DEFAULT_TITLE;
     }
-  };
+    return () => {
+      document.title = DEFAULT_TITLE;
+    };
+  }, [file]);
 
-  document.addEventListener("keydown", handleKeydown);
+  useEffect(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (
+        (e.ctrlKey || e.metaKey) &&
+        e.key === "Enter" &&
+        file &&
+        status === "idle"
+      ) {
+        handleExport();
+      }
+    };
 
-  return () => {
-    document.removeEventListener("keydown", handleKeydown);
-  };
-}, [file, status, handleExport]);
+    document.addEventListener("keydown", handleKeydown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeydown);
+    };
+  }, [file, status, handleExport]);
   const reset = useCallback(() => {
     setFile(null);
     setDuration(0);
