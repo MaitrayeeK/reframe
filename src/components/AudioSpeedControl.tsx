@@ -10,7 +10,13 @@ interface Props {
 
 export default function AudioSpeedControl({ recipe, onChange }: Props) {
   const speedIndex = SPEED_STEPS.indexOf(recipe.speed as (typeof SPEED_STEPS)[number]);
-
+  const getSpeedDescription = (speed: number) => {
+    if (speed <= 0.5) return "Very Slow";
+    if (speed < 1) return "Slow";
+    if (speed === 1) return "Normal";
+    if (speed <= 1.5) return "Fast";
+    return "Very Fast";
+  };
   return (
     <div className="space-y-4">
       <button
@@ -26,6 +32,14 @@ export default function AudioSpeedControl({ recipe, onChange }: Props) {
         `}
       >
         {recipe.keepAudio ? <Volume2 size={16} /> : <VolumeX size={16} />}
+        <div className="text-right">
+          <span className="text-sm font-heading font-bold text-film-600 block">
+            {recipe.speed}x
+          </span>
+          <span className="text-[10px] text-[var(--muted)]">
+            {getSpeedDescription(recipe.speed)}
+          </span>
+        </div>
         <span className="sr-only">
           {recipe.keepAudio ? "Turn audio off" : "Turn audio on"}
         </span>
@@ -39,9 +53,15 @@ export default function AudioSpeedControl({ recipe, onChange }: Props) {
           <label className="text-[10px] font-heading font-semibold uppercase tracking-wider text-[var(--muted)] flex items-center gap-1">
             <Gauge size={10} /> Speed
           </label>
-          <span className="text-sm font-heading font-bold text-film-600">
-            {recipe.speed}x
-          </span>
+
+          <div className="text-right">
+            <span className="text-sm font-heading font-bold text-film-600 block">
+              {recipe.speed}x
+            </span>
+            <span className="text-[10px] text-[var(--muted)]">
+              {getSpeedDescription(recipe.speed)}
+            </span>
+          </div>
         </div>
         <input
           type="range"
