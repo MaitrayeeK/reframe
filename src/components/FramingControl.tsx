@@ -28,6 +28,9 @@ export default function FramingControl({ recipe, onChange }: Props) {
             `}
           >
             <Icon size={18} />
+            <span className="sr-only">
+              Set framing to {mode === "fit" ? "fit within frame" : "fill frame by cropping"}
+            </span>
             <div className="text-center">
               <p className="text-xs font-heading font-semibold uppercase tracking-wider">
                 {mode === "fit" ? "Fit" : "Fill"}

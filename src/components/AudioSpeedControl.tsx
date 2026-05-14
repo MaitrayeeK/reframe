@@ -25,6 +25,9 @@ export default function AudioSpeedControl({ recipe, onChange }: Props) {
         `}
       >
         {recipe.keepAudio ? <Volume2 size={16} /> : <VolumeX size={16} />}
+        <span className="sr-only">
+          {recipe.keepAudio ? "Turn audio off" : "Turn audio on"}
+        </span>
         <span className="text-sm font-heading font-semibold">
           {recipe.keepAudio ? "Audio on" : "Muted"}
         </span>

@@ -29,6 +29,7 @@ export default function RotateControl({ recipe, onChange }: Props) {
             `}
           >
             <RotateCw size={15} style={{ transform: `rotate(${deg}deg)` }} className="transition-transform" />
+            <span className="sr-only">Rotate video to {deg} degrees</span>
             {deg}
           </button>
         );
