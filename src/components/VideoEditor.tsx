@@ -133,6 +133,7 @@ export default function VideoEditor() {
             </div>
 
             <button
+              type="button"
               onClick={handleExport}
               disabled={!file || isProcessing}
               className={`

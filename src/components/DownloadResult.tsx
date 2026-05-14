@@ -47,6 +47,7 @@ export default function DownloadResult({ result, onReset }: Props) {
           Download {result.format.toUpperCase()}
         </a>
         <button
+          type="button"
           onClick={onReset}
           className="flex items-center gap-2 px-4 py-3 border border-[var(--border)] text-[var(--muted)] text-sm rounded-lg hover:bg-[var(--bg)] transition-colors"
         >

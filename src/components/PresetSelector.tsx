@@ -34,6 +34,7 @@ export default function PresetSelector({ recipe, onChange }: Props) {
           const active = recipe.preset === preset.id;
           return (
             <button
+              type="button"
               key={preset.id}
               onClick={() => onChange({ preset: preset.id })}
               title={`${preset.label} — ${preset.platform}`}
@@ -60,6 +61,7 @@ export default function PresetSelector({ recipe, onChange }: Props) {
         })}
 
         <button
+          type="button"
           onClick={() => onChange({ preset: "custom" })}
           className={`
             flex items-center gap-2.5 p-2.5 rounded-lg border text-left transition-all duration-150

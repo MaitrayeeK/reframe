@@ -16,6 +16,7 @@ export default function FramingControl({ recipe, onChange }: Props) {
         const active = recipe.framing === mode;
         return (
           <button
+            type="button"
             key={mode}
             onClick={() => onChange({ framing: mode })}
             className={`
