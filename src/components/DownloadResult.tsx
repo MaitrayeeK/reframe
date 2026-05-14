@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { ExportResult } from "@/lib/types";
 import { formatBytes } from "@/lib/ffmpeg";
 import { Download, RotateCcw } from "lucide-react";
@@ -14,12 +13,6 @@ interface Props {
 
 export default function DownloadResult({ result, onReset }: Props) {
   const filename = `reframe_${result.width}x${result.height}.${result.format}`;
-  // clears result without going through reset, revoke the URL
-    useEffect(() => {
-    return () => {
-      URL.revokeObjectURL(result.blobUrl);
-    };
-  }, [result.blobUrl]);
 
   return (
     <div className="p-5 bg-[var(--surface)] border border-[var(--border)] rounded-xl space-y-4">
