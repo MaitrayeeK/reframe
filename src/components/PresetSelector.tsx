@@ -9,6 +9,7 @@ interface Props {
   recipe: EditRecipe;
   onChange: (patch: Partial<EditRecipe>) => void;
 }
+
 function getOrientationLabel(width: number, height: number): string {
   const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b));
   const d = gcd(width, height);
@@ -46,16 +47,11 @@ export default function PresetSelector({ recipe, onChange }: Props) {
               type="button"
               key={preset.id}
               onClick={() => onChange({ preset: preset.id })}
-              title={`${preset.label} — ${preset.platform}`}
+              title={`${preset.label} — ${preset.width}×${preset.height} — ${getOrientationLabel(preset.width, preset.height)}`}
               className={cn(
-                "flex items-center gap-2.5 p-2.5 rounded-lg border text-left transition-all duration-150",
+                "flex items-center gap-2.5 p-2.5 rounded-lg border text-left transition-all duration-150 cursor-pointer",
                 "hover:scale-[1.02] active:scale-[0.98]",
                 active
-              title={`${preset.label} — ${preset.width}×${preset.height} — ${getOrientationLabel(preset.width, preset.height)}`}
-              className={`
-                flex items-center gap-2.5 p-2.5 rounded-lg border text-left transition-all duration-150 cursor-pointer
-                hover:scale-[1.02] active:scale-[0.98]
-                ${active
                   ? "border-film-500 bg-film-50"
                   : "border-[var(--border)] bg-[var(--surface)] hover:border-film-300 hover:bg-film-50/30"
               )}
