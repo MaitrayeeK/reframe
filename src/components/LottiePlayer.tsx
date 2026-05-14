@@ -8,6 +8,7 @@ interface Props {
   autoplay?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  label?: string;
 }
 
 export default function LottiePlayer({
@@ -16,6 +17,7 @@ export default function LottiePlayer({
   autoplay = true,
   className,
   style,
+  label,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -43,5 +45,15 @@ export default function LottiePlayer({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div ref={containerRef} className={className} style={style} />;
+  return (
+    <>
+      <div
+        ref={containerRef}
+        className={className}
+        style={style}
+        aria-hidden="true"
+      />
+      {label && <span className="sr-only">{label}</span>}
+    </>
+  );
 }
