@@ -84,6 +84,11 @@ export default function VideoEditor() {
               )}
             </div>
 
+            {file && file.size > 100 * 1024 * 1024 && (
+              <p className="text-yellow-400 text-sm">
+                ⚠️ Large file — processing may take several minutes
+              </p>
+            )}      
             {file && (
               <div className={cn(
                 "grid grid-cols-1 sm:grid-cols-2 gap-4",
