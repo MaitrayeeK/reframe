@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 
 import { EditRecipe, SPEED_STEPS } from "@/lib/types";
 import { Volume2, VolumeX, Gauge } from "lucide-react";
@@ -10,6 +11,36 @@ interface Props {
 }
 
 export default function AudioSpeedControl({ recipe, onChange }: Props) {
+useEffect(() => {
+  const handler = (e: KeyboardEvent) => {
+    const target = e.target as HTMLElement;
+
+    if (
+      target.tagName === "INPUT" ||
+      target.tagName === "TEXTAREA" ||
+      target.isContentEditable
+    ) {
+      return;
+    }
+
+    if (
+      e.key.toLowerCase() === "m" &&
+      !e.ctrlKey &&
+      !e.metaKey
+    ) {
+      onChange({
+        keepAudio: !recipe.keepAudio,
+      });
+    }
+  };
+
+  document.addEventListener("keydown", handler);
+
+  return () => {
+    document.removeEventListener("keydown", handler);
+  };
+}, [recipe.keepAudio, onChange]);
+
   const speedIndex = SPEED_STEPS.indexOf(recipe.speed as (typeof SPEED_STEPS)[number]);
   const getSpeedDescription = (speed: number) => {
     if (speed <= 0.5) return "Very Slow";
