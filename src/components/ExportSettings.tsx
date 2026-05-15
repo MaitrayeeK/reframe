@@ -9,7 +9,11 @@ interface Props {
 }
 
 export default function ExportSettings({ recipe, onChange }: Props) {
-  const label = recipe.quality <= 20 ? "High" : recipe.quality <= 24 ? "Balanced" : "Small file";
+  const label = recipe.quality <= 21 
+    ? "High" 
+    : recipe.quality <= 25 
+    ? "Balanced" 
+    : "Small file";
 
   return (
     <div>
