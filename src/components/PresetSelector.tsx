@@ -47,11 +47,10 @@ export default function PresetSelector({ recipe, onChange }: Props) {
               type="button"
               key={preset.id}
               onClick={() => onChange({ preset: preset.id })}
-              title={`${preset.label} — ${preset.platform}`}
-              className={`
-                min-h-[44px] min-w-[44px] flex items-center gap-2.5 p-3 rounded-lg border text-left transition-all duration-150 cursor-pointer
-                hover:scale-[1.02] active:scale-[0.98]
-                ${active
+              title={`${preset.label} — ${preset.width}×${preset.height} — ${getOrientationLabel(preset.width, preset.height)}`}
+              className={cn(
+                "min-h-[44px] min-w-[44px] flex items-center gap-2.5 p-3 rounded-lg border text-left transition-all duration-150 cursor-pointer hover:scale-[1.02] active:scale-[0.98]",
+                active
                   ? "border-film-500 bg-film-50"
                   : "border-[var(--border)] bg-[var(--surface)] hover:border-film-300 hover:bg-film-50/30"
               )}
@@ -76,10 +75,9 @@ export default function PresetSelector({ recipe, onChange }: Props) {
           type="button"
           title="Custom — Set your own dimensions"
           onClick={() => onChange({ preset: "custom" })}
-          className={`
-            min-h-[44px] min-w-[44px] flex items-center gap-2.5 p-3 rounded-lg border text-left transition-all duration-150 cursor-pointer
-            hover:scale-[1.02] active:scale-[0.98]
-            ${recipe.preset === "custom"
+          className={cn(
+            "min-h-[44px] min-w-[44px] flex items-center gap-2.5 p-3 rounded-lg border text-left transition-all duration-150 cursor-pointer hover:scale-[1.02] active:scale-[0.98]",
+            recipe.preset === "custom"
               ? "border-film-500 bg-film-50"
               : "border-[var(--border)] bg-[var(--surface)] hover:border-film-300 hover:bg-film-50/30"
           )}
