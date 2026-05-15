@@ -2,6 +2,7 @@
 
 import { EditRecipe, SPEED_STEPS } from "@/lib/types";
 import { Volume2, VolumeX, Gauge } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Props {
   recipe: EditRecipe;
@@ -22,14 +23,13 @@ export default function AudioSpeedControl({ recipe, onChange }: Props) {
       <button
         type="button"
         onClick={() => onChange({ keepAudio: !recipe.keepAudio })}
-        className={`
-          w-full flex items-center gap-3 p-3 rounded-lg border transition-all duration-150
-          hover:scale-[1.01] active:scale-[0.99]
-          ${recipe.keepAudio
+        className={cn(
+          "w-full flex items-center gap-3 p-3 rounded-lg border transition-all duration-150",
+          "hover:scale-[1.01] active:scale-[0.99]",
+          recipe.keepAudio
             ? "border-film-300 bg-film-50 text-film-700"
             : "border-[var(--border)] bg-[var(--surface)] text-[var(--muted)]"
-          }
-        `}
+        )}
       >
         {recipe.keepAudio ? <Volume2 size={16} /> : <VolumeX size={16} />}
         <div className="text-right">
