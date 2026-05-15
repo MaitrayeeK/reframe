@@ -23,6 +23,8 @@ export default function AudioSpeedControl({ recipe, onChange }: Props) {
       <button
         type="button"
         onClick={() => onChange({ keepAudio: !recipe.keepAudio })}
+        aria-label={recipe.keepAudio ? "Mute video audio" : "Unmute video audio"}
+        aria-pressed={recipe.keepAudio}
         className={cn(
           "w-full flex items-center gap-3 p-3 rounded-lg border transition-all duration-150",
           "hover:scale-[1.01] active:scale-[0.99]",
@@ -71,6 +73,8 @@ export default function AudioSpeedControl({ recipe, onChange }: Props) {
           step={1}
           value={speedIndex === -1 ? 3 : speedIndex}
           onChange={(e) => onChange({ speed: SPEED_STEPS[Number(e.target.value)] })}
+          aria-label="Video playback speed"
+          aria-valuetext={`${recipe.speed}x speed, ${getSpeedDescription(recipe.speed)}`}
           className="w-full h-11 accent-film-600 cursor-pointer"
         />
         <div className="flex justify-between mt-1">
