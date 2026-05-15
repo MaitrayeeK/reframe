@@ -122,10 +122,18 @@ export default function VideoEditor() {
                     className="flex items-start gap-3 p-4 bg-film-50 border border-film-200 rounded-xl text-film-800 text-sm animate-fade-in"
                   >
                 <AlertTriangle size={16} className="shrink-0 mt-0.5 text-film-500" />
-                <div>
+                <div className="flex-1">
                   <p className="font-heading font-bold text-sm">Error</p>
                   <p className="text-film-600 text-xs mt-1">{error}</p>
                 </div>
+                {!error.includes("Validation Failed") && (
+                  <button
+                    onClick={handleExport}
+                    className="px-3 py-1.5 bg-red-200 border border-film-200 rounded-lg text-xs font-semibold hover:bg-film-50 hover:border-film-300 transition-colors shrink-0 whitespace-nowrap"
+                  >
+                    Retry Export
+                  </button>
+                )}
               </div>
             )}
 
