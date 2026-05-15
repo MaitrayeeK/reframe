@@ -17,14 +17,43 @@ function fmt(bytes: number) {
     : `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+function formatDuration(seconds: number) {  //1
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins.toString().padStart(2, "0")}:${secs
+  .toString()
+  .padStart(2, "0")}`;
+}
+
+
 export default function FileUpload({ onFileSelect, currentFile }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
 
-  const handleFile = (file: File) => {
-    if (!file.type.startsWith("video/")) return;
+    const [duration, setDuration] = useState<number | null>(null); //2
+
+
+  // const handleFile = (file: File) => {
+  //   if (!file.type.startsWith("video/")) return;
+  //   onFileSelect(file);
+  // };
+
+   const handleFile = (file: File) => {
+    if (!file.type.startsWith("video/")) return;//3
+  setDuration(null);
+        const video = document.createElement("video");
+    video.preload = "metadata";
+
+    video.onloadedmetadata = () => {
+      window.URL.revokeObjectURL(video.src);
+      setDuration(video.duration); //4
+    };
+
+    video.src = URL.createObjectURL(file);
+
     onFileSelect(file);
   };
+
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -32,6 +61,7 @@ export default function FileUpload({ onFileSelect, currentFile }: Props) {
     const file = e.dataTransfer.files[0];
     if (file) handleFile(file);
   };
+  
 
   if (currentFile) {
     return (
@@ -41,7 +71,12 @@ export default function FileUpload({ onFileSelect, currentFile }: Props) {
           <p className="text-sm font-medium font-heading truncate text-[var(--text)]">
             {currentFile.name}
           </p>
-          <p className="text-xs text-[var(--muted)]">{fmt(currentFile.size)}</p>
+
+          {/*<p className="text-xs text-[var(--muted)]">{fmt(currentFile.size)}</p>*/}
+           <p className="text-xs text-[var(--muted)]">
+            {fmt(currentFile.size)}{" "}
+        {duration !== null ? `• ${formatDuration(duration)}` : "• Loading..."}
+          </p>
         </div>
         <button
           type="button"
