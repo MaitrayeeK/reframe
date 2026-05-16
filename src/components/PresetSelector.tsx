@@ -114,6 +114,11 @@ const handleArrowNavigation = (
     }
   };
 
+  function clampInputValue(value: number, min = 16, max = 7680) {
+    if (isNaN(value)) return min;
+    return Math.max(min, Math.min(max, value));
+  }
+
   return (
     <div className="space-y-6">
       {Object.entries(groupedPresets).map(([category, presets]) => {
@@ -246,6 +251,10 @@ const handleArrowNavigation = (
                 onChange={(e) =>
                   onChange({ customWidth: Number(e.target.value) })
                 }
+                onBlur={(e) => {
+                  const value = clampInputValue(Number(e.target.value));
+                  onChange({ customWidth: value });
+                }}
                 className="w-full text-sm px-3 py-2 border border-[var(--border)] rounded-md bg-[var(--bg)] font-heading focus:outline-none focus:ring-2 focus:ring-film-400 focus:border-transparent transition-all"
               />
             </div>
@@ -273,6 +282,10 @@ const handleArrowNavigation = (
                 onChange={(e) =>
                   onChange({ customHeight: Number(e.target.value) })
                 }
+                onBlur={(e) => {
+                  const value = clampInputValue(Number(e.target.value));
+                  onChange({ customHeight: value });
+                }}
                 className="w-full text-sm px-3 py-2 border border-[var(--border)] rounded-md bg-[var(--bg)] font-heading focus:outline-none focus:ring-2 focus:ring-film-400 focus:border-transparent transition-all"
               />
             </div>
