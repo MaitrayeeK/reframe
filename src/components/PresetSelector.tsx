@@ -158,9 +158,12 @@ const handleHeightChange = useCallback((h: number) => {
               min={16}
               max={7680}
               step={2}
-              value={recipe.customWidth}
-              
+              value={recipe.customWidth}              
               onChange={(e) => handleWidthChange(Number(e.target.value))}
+              onBlur={(e) => {
+                const value = clampInputValue(Number(e.target.value));
+                onChange({ customWidth: value });
+              }}
               className="w-full text-sm px-3 py-1.5 border border-[var(--border)] rounded-md bg-[var(--bg)] font-heading focus:outline-none focus:ring-2 focus:ring-film-400 transition-shadow"
             />
             {recipe.customWidth % 2!==0 && (
@@ -196,6 +199,10 @@ const handleHeightChange = useCallback((h: number) => {
               step={2}
               value={recipe.customHeight}
               onChange={(e) => handleHeightChange(Number(e.target.value))}
+              onBlur={(e) => {
+                const value = clampInputValue(Number(e.target.value));
+                onChange({ customHeight: value });
+              }}
               className="w-full text-sm px-3 py-1.5 border border-[var(--border)] rounded-md bg-[var(--bg)] font-heading focus:outline-none focus:ring-2 focus:ring-film-400 transition-shadow"
             />
             {recipe.customHeight %2!==0 && (
